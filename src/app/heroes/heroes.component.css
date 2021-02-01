@@ -45,3 +45,18 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+
+#container {
+  width: 320px;
+  margin: auto;
+}
+
+#first {
+  width: 270px;
+  float: left;
+}
+
+#second {
+  width: 50px;
+  float: right;
+}

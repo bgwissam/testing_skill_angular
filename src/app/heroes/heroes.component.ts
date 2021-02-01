@@ -12,7 +12,10 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[] | undefined;
   selectedHero: Hero | undefined;
 
-  constructor(private heroService: HeroService, private messageService: MessageService) {}
+  constructor(
+    private heroService: HeroService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.getHeroes();
@@ -22,4 +25,20 @@ export class HeroesComponent implements OnInit {
     this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
   }
 
+  // Add a new hero
+  addHero(name: string): void {
+    name = name.trim();
+    if (!name) {
+      return;
+    }
+    this.heroService.addHero({ name } as Hero).subscribe((hero: any) => {
+      this.heroes?.push(hero);
+    });
+  }
+
+  // delete the current hero
+  delete(hero: Hero): void {
+    this.heroes = this.heroes?.filter(h => h !== hero);
+    this.heroService.deleteHero(hero).subscribe();
+  }
 }
